@@ -5,7 +5,6 @@ import mongoose from 'mongoose';
 import User from '../models/users';
 import bodyParser from 'body-parser';
 
-
 const jsonParser = bodyParser.json();
 
 mongoose.Promise = global.Promise;
@@ -27,7 +26,7 @@ app.post('/user', jsonParser, (req, res) => {
   User
   .create({
     username: req.body.username,
-    questions,
+    questions: [],
     score: 0
   })
   .then(

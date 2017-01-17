@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 //const mongoose = require('mongoose');
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   username: {type: String, required: true},
-  questions: [],
+  questions: Array,
   score: Number
 })
 

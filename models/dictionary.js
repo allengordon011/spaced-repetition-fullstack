@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 //const mongoose = require('mongoose');
 
-const DictionarySchema = mongoose.Schema({
+const DictionarySchema = new mongoose.Schema({
   french: ['bonjour', 'oui', 'non', 'sil vous plait', 'merci', 'chat', 'noir', 'rouge'],
   english: ['hello', 'yes', 'no', 'please', 'thank you', 'cat', 'black', 'red']
 })
