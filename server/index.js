@@ -37,21 +37,21 @@ app.post('/user', jsonParser, (req, res) => {
   });
 });
 
-app.get('/user', (req, res) => {
+app.get('/user/:username', (req, res) => {
   User
-    .findOne()
+    .findOne({'username': req.params.username})
+    .select('username questions score')
     .exec()
-    .then(username => {
+    .then((user) => {
       res.json({
-        username,
-        questions,
-        score
+        username: user.username,
+        score: user.score,
+        questions: user.questions
       });
     })
-    .catch(
-      err => {
-        console.error(err);
-        res.status(500).json({message: 'Internal server error'});
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal server error'});
     });
 })
 
