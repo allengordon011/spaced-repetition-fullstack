@@ -1,10 +1,22 @@
-import Mongoose from 'mongoose';
+import mongoose from 'mongoose';
 //const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
   username: {type: String, required: true},
   questions: [],
   score: Number
 })
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
+
+export default User;
+
+
+// const user = 'asdf'
+
+// { user }
+// { user: user }
+// { user: 'asdf' }
+
+// const User = require('./user.js') -> 'asdf'
+// const User = require('./user.js').User -> { User: 'asdf' }

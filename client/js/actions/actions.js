@@ -1,5 +1,15 @@
-import * as actions from '../actions/actions';
+const ADD_USER = 'ADD_USER';
+export const addUser = {
+  type: ADD_USER,
+  username
+}
 
-const initialRepositoryState = [];
+const UPDATE_SCORE = 'UPDATE_SCORE';
+export const updateScore = {
+  score: score + 1
+}
 
-export const 
+const UPDATE_QUESTIONS = 'UPDATE_QUESTIONS';
+export const updateQuestions = {
+  questions
+}
