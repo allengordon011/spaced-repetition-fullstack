@@ -37,6 +37,24 @@ app.post('/user', jsonParser, (req, res) => {
   });
 });
 
+app.post('/dictionary', jsonParser, (req, res) => {
+  if (!req.body.username) {
+    return res.status(400).json({message: 'Must specify a username'})
+  }
+  User
+  .create({
+    username: req.body.username,
+    questions: [],
+    score: 0
+  })
+  .then(
+    res.status(201).json({message: 'User created'}))
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({message: 'Internal server error'})
+  });
+});
+
 app.get('/user/:username', (req, res) => {
   User
     .findOne({'username': req.params.username})

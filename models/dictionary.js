@@ -2,10 +2,11 @@ import mongoose from 'mongoose';
 //const mongoose = require('mongoose');
 
 const DictionarySchema = new mongoose.Schema({
-  french: ['bonjour', 'oui', 'non', 'sil vous plait', 'merci', 'chat', 'noir', 'rouge'],
-  english: ['hello', 'yes', 'no', 'please', 'thank you', 'cat', 'black', 'red']
-})
+  french: Array,
+  english: Array,
+  freq: Array
+});
 
 const Dictionary = mongoose.model('Dictionary', DictionarySchema);
 
-module.exports = {DictionarySchema};
+export default Dictionary
