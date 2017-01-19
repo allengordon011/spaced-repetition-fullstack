@@ -37,25 +37,8 @@ app.post('/user', jsonParser, (req, res) => {
   });
 });
 
-app.post('/dictionary', jsonParser, (req, res) => {
-  if (!req.body.username) {
-    return res.status(400).json({message: 'Must specify a username'})
-  }
-  User
-  .create({
-    username: req.body.username,
-    questions: [],
-    score: 0
-  })
-  .then(
-    res.status(201).json({message: 'User created'}))
-  .catch(err => {
-    console.error(err);
-    res.status(500).json({message: 'Internal server error'})
-  });
-});
 
-app.get('/user/:username', (req, res) => {
+app.get('/user:username', (req, res) => {
   User
     .findOne({'username': req.params.username})
     .select('username questions score')
@@ -65,6 +48,42 @@ app.get('/user/:username', (req, res) => {
         username: user.username,
         score: user.score,
         questions: user.questions
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal server error'});
+    });
+})
+
+app.post('/dictionary', jsonParser, (req, res) => {
+  if (!req.body) {
+    return res.status(400).json({message: 'Must have a body'})
+  }
+  Dictionary
+  .create({
+    french: req.body.french,
+    english: req.body.english,
+    freq: 1
+  })
+  .then(
+    res.status(201).json({message: 'Entry created'}))
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({message: 'Internal server error'})
+  });
+});
+
+app.get('/dictionary', (req, res) => {
+  Dictionary
+    .find()
+    // .select('username questions score')
+    .exec()
+    .then((dictionary) => {
+      res.json({
+        french: dictionary.french,
+        english: dictionary.english,
+        freq: dictionary.freq
       });
     })
     .catch(err => {
