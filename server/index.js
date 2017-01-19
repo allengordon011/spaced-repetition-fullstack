@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 // const mongoose = require('mongoose');
 import User from '../models/users';
 import bodyParser from 'body-parser';
+import passport from 'passport';
+import GoogleStrategy from 'passport-google-oauth20';
 
 const jsonParser = bodyParser.json();
 
@@ -92,6 +94,29 @@ app.get('/dictionary', (req, res) => {
     });
 })
 
+passport.use(new GoogleStrategy({
+    clientID: "666318730444-jtladaigq3b7q2hr6f26d1drti6m0c6u.apps.googleusercontent.com",
+    clientSecret: "SCF1Z4qZcVwxgKyv5u9Ot6e-",
+    callbackURL: "http://localhost:8080/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    console.log(accessToken, profile);
+    return cb(null, profile);
+    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    //   return cb(err, user);
+    // });
+  }
+));
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 function runServer(databaseURL=DATABASE_URL) {
     return new Promise((resolve, reject) => {
