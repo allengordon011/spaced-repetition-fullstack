@@ -18,12 +18,14 @@ console.log(`Client running in ${process.env.NODE_ENV} mode`);
 
 
 ReactDOM.render(
-    <Provider>
       <App/>
-        {/* <Router history={browserHistory}>
-          <Route path="/" component={Landing}>
-          <Route path="app" component={App}/>
-          </Route>
-        </Router> */}
-    </Provider>,
+        
+    ,
     document.getElementById('app'))
+  //   <Provider>
+  // <Router history={browserHistory}>
+  //     <Route path="/" component={Landing}>
+  //     <Route path="app" component={App}/>
+  //     </Route>
+  //   </Router>
+  //   </Provider>

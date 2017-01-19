@@ -2,9 +2,10 @@ import mongoose from 'mongoose';
 //const mongoose = require('mongoose');
 
 const DictionarySchema = new mongoose.Schema({
-  french: Array,
-  english: Array,
-  freq: Array
+  french: String,
+  english: String,
+  freq: Number,
+  userId: mongoose.Schema.Types.ObjectId
 });
 
 const Dictionary = mongoose.model('Dictionary', DictionarySchema);

@@ -41,5 +41,5 @@ const mapStateToProps = (state) => {
     questions: []
   }
 }
-//connect
-export default connect(mapStateToProps)(App);
+//connect(mapStateToProps)
+export default App;
