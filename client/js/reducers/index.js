@@ -2,32 +2,33 @@ import * as actions from '../actions';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  userReducer: userReducer
-  // questionsReducer
+  user: userReducer,
+  questions: questionsReducer
 });
 
-export const userReducer = (state={}, action) => {
+const userReducer = (state={}, action) => {
   switch(action.type) {
-    case 'CREATE_USER':
+    case CREATE_USER: {
       return {
-        // ...state,
-        // {
-          username: action.username
-        // }
+        ...state
       }
+    }
       // case 'POST_USER'
-      default: return state
+      default:
+        return state
+  }
+// }
+
+const questionsReducer = (state={}, action) => {
+  switch(action.type) {
+    case 'RECEIVE_DATA':
+      return {
+        ...state,
+        question: action.question
+      }
+      default:
+      return question
   }
 }
-
-// export const questionsReducer = (state={}, action) => {
-//   switch(action.type) {
-//     case 'RECEIVE_DATA':
-//       return {
-//         question: action.question
-//       }
-//       // default: return question
-//   }
-// }
 
 export default rootReducer

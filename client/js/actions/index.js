@@ -5,6 +5,7 @@ const CREATE_USER = 'CREATE_USER';
 export const createUser = username => ({
   type: CREATE_USER,
   //post user to db
+  username
 
 });
 
