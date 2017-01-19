@@ -1,6 +1,6 @@
 import React from 'react';
 import LandingPage from './Landing';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 const enterAnswer = (event) => {
@@ -36,7 +36,10 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   console.log(state);
-  return
+  return {
+    username: state.username,
+    questions: []
+  }
 }
 //connect
 export default connect(mapStateToProps)(App);
