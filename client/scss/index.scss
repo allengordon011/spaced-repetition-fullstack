@@ -1,0 +1,38 @@
+.box {
+}
+
+.header {
+  display: flex;
+  height: 150px;
+  width: 100%;
+  background-color: darkgrey;
+  color: white;
+  margin-bottom: 75px;
+  font-family: 'Kalam', cursive;
+  font-size: 48px;
+  // text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.flash-cards {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Indie Flower', cursive;
+  font-size: 16px;
+  justify-content: center;
+  margin: auto;
+}
+
+.french {
+  margin-right: 50px;
+}
+
+.form {
+  // display: inline-block;
+  font-family: 'Indie Flower', cursive;
+}
+
+.Button {
+  margin-left: 30px;
+}
