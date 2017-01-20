@@ -16,13 +16,26 @@ export const submitAnswer = answer => ({
   score: score + 1
 });
 
-const RECEIVE_DATA = 'RECEIVE_DATA';
-const receive = (questions) => {
-  return {
-    type: RECEIVE_DATA,
-    questions
-  }
+//action
+export const getFlashCard = () => {
+    return dispatch => {
+      return fetch('/flashcard')
+        .then(res => res.json())
+        .then(json => dispatch(getFlashCardSuccess(json)))
+    }
 }
+
+//action creator
+export const GET_FLASHCARD_SUCCESS = 'GET_FLASHCARD_SUCCESS';
+
+const getFlashCardSuccess = (data) => {
+
+  return {
+    type: GET_FLASHCARD_SUCCESS,
+    flashcard: data
+  }
+
+};
 
 const NEXT_QUESTION = 'NEXT_QUESTION';
 

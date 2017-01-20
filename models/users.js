@@ -13,13 +13,3 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 
 export default User;
-
-
-// const user = 'asdf'
-
-// { user }
-// { user: user }
-// { user: 'asdf' }
-
-// const User = require('./user.js') -> 'asdf'
-// const User = require('./user.js').User -> { User: 'asdf' }

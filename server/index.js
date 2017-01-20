@@ -3,7 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 // const mongoose = require('mongoose');
 import User from '../models/users';
-import Dictionary from '../models/dictionary';
+import FlashCard from '../models/flashcard';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import GoogleStrategy from 'passport-google-oauth20';
@@ -67,40 +67,48 @@ app.get('/user/:username', (req, res) => {
     .select('username questions score email googleId token')
     .exec()
     .then((user) => {
-        res.status(200).json({username: user.username, score: user.score, questions: user.questions, email: user.email, googleId: user.googleId, token: user.token});
+      // console.log(user)
+        res.status(200).json(user);
     }).catch(err => {
         console.error(err);
         res.status(500).json({message: 'Internal server error'});
     });
 })
 
-app.post('/user/:username/dictionary', jsonParser, (req, res) => {
-  //var query = User.findOne({ 'username': req.params.username }, function(err, user))
-//   if (err) {
-//     "user doesnt exist yo"
-//     } else {
-//     Call Dictionary.create
-// })
-    if (!req.body) {
-        return res.status(400).json({message: 'Must have a body'})
-    }
-    Dictionary.create({french: req.body.french, english: req.body.english, freq: 1, userId: req.body._id}).then(res.status(201).json({message: 'Entry created'})).catch(err => {
+app.post('/flashcard', jsonParser, (req, res) => {
+  // const query = User.findOne({'username': req.params.username})
+  //   .select('username')
+  //   .then((user) => {
+  //   if(!user) {
+  //     return res.status(404).json({message: "User does not exist"})
+  //   } else {
+  //     console.log(user.username)
+  //     console.log(user._id)
+  //     return res.status(200).json({message: 'User found'})
+  //   }
+//call query here? move query to global?
+    FlashCard.create({french: req.body.french, english: req.body.english, freq: 1})
+    .then(res.status(201)
+    //location header with res
+    .json({message: 'Entry created'}))
+    .catch(err => {
         console.error(err);
         res.status(500).json({message: 'Internal server error'})
     });
 });
 
-app.get('/dictionary/:username/dictionary', (req, res) => {
+app.get('/flashcard', (req, res) => {
   //var query = User.findOne({ 'username': req.params.username }, function(err, user))
 //   if (err) {
 //     "user doesnt exist yo"
 //     } else {
-//     Call Dictionary.create
+//     Call FlashCard.create
 // })
-    Dictionary.findOne()
-        .then((dictionary) => {
-          console.log(dictionary)
-        res.json({french: dictionary.french, english: dictionary.english, freq: dictionary.freq, userId: dictionary.userId});
+    FlashCard.findOne()
+        .then((flashcards) => {
+          console.log(flashcards)
+          res.json(flashcards)
+        //res.json({french: flashcard.french, english: flashcard.english, freq: flashcard.freq});
     }).catch(err => {
         console.error(err);
         res.status(500).json({message: 'Internal server error'});
