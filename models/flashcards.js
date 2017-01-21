@@ -10,3 +10,5 @@ const FlashCardsSchema = new mongoose.Schema({
 const FlashCards = mongoose.model('FlashCards', FlashCardsSchema);
 
 export default FlashCards
+
+//merge
