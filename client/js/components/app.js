@@ -12,22 +12,23 @@ class App extends React.Component {
 
     componentDidMount() {
       //use mapDispatchToProps below to dispatch Redux action here for AJAX fetch
-      this.props.dispatch(actions.getFlashCard())
+      this.props.dispatch(actions.getFlashCards())
     }
 
   enterAnswer(event) {
         event.preventDefault();
+
         let answer = event.target.answer.value;
-        // console.log(answer)
-        // console.log('props: ', this.props)
         //compare answers
-        if (answer === this.props.flashcard.english) {
+        if (answer === this.props.flashcards.english) {
         alert('Correct')
       } else {
         alert('Wrong')
       }
-        //dispatch action
+        //dispatch action to send results and call next flashcards
+        //
     }
+
 
     render() {
         return (
@@ -36,7 +37,7 @@ class App extends React.Component {
                 <div className="flash-cards">
                     <div className="french">
                         <div className="french-legend">Français</div>
-                        <div className="french-word">Pomme</div>
+                        <div className="french-word">{this.french}</div>
                     </div>
                     <form onSubmit={this.enterAnswer}>
                         <div className="english-legend">English</div>
@@ -52,7 +53,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     username: state.username,
-    flashcard: state.flashcard
+    flashcards: state.flashcards
   }
 }
 

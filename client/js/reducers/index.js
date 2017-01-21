@@ -18,16 +18,16 @@ import * as actions from '../actions';
 //   }
 // // }
 //
-const answerReducer = (state={}, action) => {
+const flashCardsReducer = (state={}, action) => {
   switch(action.type) {
-    case actions.GET_FLASHCARD_SUCCESS:
+    case actions.GET_FLASHCARDS_SUCCESS:
       return {
         ...state,
-        flashcard: action.flashcard
+        flashcards: action.flashcards
       }
       default:
       return state
   }
 }
 
-export default answerReducer
+export default flashCardsReducer

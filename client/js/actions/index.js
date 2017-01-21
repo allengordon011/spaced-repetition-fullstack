@@ -17,22 +17,22 @@ export const submitAnswer = answer => ({
 });
 
 //action
-export const getFlashCard = () => {
+export const getFlashCards = () => {
     return dispatch => {
-      return fetch('/flashcard')
+      return fetch('/flashcards')
         .then(res => res.json())
-        .then(json => dispatch(getFlashCardSuccess(json)))
+        .then(json => dispatch(getFlashCardsSuccess(json)))
     }
 }
 
 //action creator
-export const GET_FLASHCARD_SUCCESS = 'GET_FLASHCARD_SUCCESS';
+export const GET_FLASHCARDS_SUCCESS = 'GET_FLASHCARDS_SUCCESS';
 
-const getFlashCardSuccess = (data) => {
+const getFlashCardsSuccess = (data) => {
 
   return {
-    type: GET_FLASHCARD_SUCCESS,
-    flashcard: data
+    type: GET_FLASHCARDS_SUCCESS,
+    flashcards: data
   }
 
 };

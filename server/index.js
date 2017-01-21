@@ -3,7 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 // const mongoose = require('mongoose');
 import User from '../models/users';
-import FlashCard from '../models/flashcard';
+import FlashCards from '../models/flashcards';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import GoogleStrategy from 'passport-google-oauth20';
@@ -75,7 +75,7 @@ app.get('/user/:username', (req, res) => {
     });
 })
 
-app.post('/flashcard', jsonParser, (req, res) => {
+app.post('/flashcards', jsonParser, (req, res) => {
   // const query = User.findOne({'username': req.params.username})
   //   .select('username')
   //   .then((user) => {
@@ -87,7 +87,7 @@ app.post('/flashcard', jsonParser, (req, res) => {
   //     return res.status(200).json({message: 'User found'})
   //   }
 //call query here? move query to global?
-    FlashCard.create({french: req.body.french, english: req.body.english, freq: 1})
+    FlashCards.create({french: req.body.french, english: req.body.english, freq: 1})
     .then(res.status(201)
     //location header with res
     .json({message: 'Entry created'}))
@@ -97,18 +97,17 @@ app.post('/flashcard', jsonParser, (req, res) => {
     });
 });
 
-app.get('/flashcard', (req, res) => {
+app.get('/flashcards', (req, res) => {
   //var query = User.findOne({ 'username': req.params.username }, function(err, user))
 //   if (err) {
 //     "user doesnt exist yo"
 //     } else {
 //     Call FlashCard.create
 // })
-    FlashCard.findOne()
+    FlashCards.find()
         .then((flashcards) => {
-          console.log(flashcards)
+          // console.log(flashcards)
           res.json(flashcards)
-        //res.json({french: flashcard.french, english: flashcard.english, freq: flashcard.freq});
     }).catch(err => {
         console.error(err);
         res.status(500).json({message: 'Internal server error'});
