@@ -106,7 +106,7 @@ app.get('/flashcards', (req, res) => {
 // })
     FlashCards.find()
         .then((flashcards) => {
-          // console.log(flashcards)
+          console.log('flashcards: ', flashcards)
           res.json(flashcards)
     }).catch(err => {
         console.error(err);
