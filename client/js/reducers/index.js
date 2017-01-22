@@ -18,16 +18,21 @@ import * as actions from '../actions';
 //   }
 // // }
 //
-const answerReducer = (state={}, action) => {
+const flashCardsReducer = (state={}, action) => {
   switch(action.type) {
-    case actions.GET_FLASHCARD_SUCCESS:
+    case actions.GET_FLASHCARDS_SUCCESS:
+    // console.log('action data: ', action.data)
+    let flashcards = action.data;
       return {
         ...state,
-        flashcard: action.flashcard
+        french: flashcards[0].french,
+        english: flashcards[0].english,
+        freq: flashcards[0].freq,
+        dictionary: flashcards
       }
       default:
       return state
   }
 }
 
-export default answerReducer
+export default flashCardsReducer

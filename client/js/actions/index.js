@@ -17,41 +17,38 @@ export const submitAnswer = answer => ({
 });
 
 //action
-export const getFlashCard = () => {
+export const getFlashCards = () => {
     return dispatch => {
-      return fetch('/flashcard')
+      return fetch('/flashcards')
         .then(res => res.json())
-        .then(json => dispatch(getFlashCardSuccess(json)))
+        .then(
+          json => dispatch(getFlashCardsSuccess(json))
+        )
     }
 }
 
 //action creator
-export const GET_FLASHCARD_SUCCESS = 'GET_FLASHCARD_SUCCESS';
+export const GET_FLASHCARDS_SUCCESS = 'GET_FLASHCARDS_SUCCESS';
 
-const getFlashCardSuccess = (data) => {
-
+export const getFlashCardsSuccess = (data) => {
+  // console.log('data: ', data[0])
   return {
-    type: GET_FLASHCARD_SUCCESS,
-    flashcard: data
+    type: GET_FLASHCARDS_SUCCESS,
+    data
   }
-
 };
 
 const NEXT_QUESTION = 'NEXT_QUESTION';
 
-const LOAD_QUESTIONS = 'LOAD_QUESTIONS';
-const loadQuestions = (questions) => {
-//AJAX fetch to my server with this action
-//return dispatch => {
-  // return fetch(`url`)
-  //   .then(res => res.json())
-  //   .then(json => dispatch(RECEIVE_DATA))
+const nextQuestion = (questions) => {
+// AJAX fetch to my server with this action
+return dispatch => {
+  return fetch('/flashcards')
+    .then(res => res.json())
+    .then(json => dispatch(RECEIVE_DATA))
+}
 }
 
-const SPACED_REP = 'SPACED_REP';
-export const spacedRep = () => ({
-  type: SPACED_REP
-});
 
 const french = [
   'bonjour', 'oui', 'non', 'sil vous plait', 'merci', 'chat', 'noir', 'rouge'
